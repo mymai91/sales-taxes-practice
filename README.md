@@ -1,2 +1,1 @@
-# sales-taxes-practice
-Practice
+# sales taxes
