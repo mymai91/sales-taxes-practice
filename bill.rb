@@ -1,7 +1,7 @@
 require_relative 'product'
 require_relative 'tax_product'
 
-class Bill < TaxProduct
+class Bill
 
   attr_reader :list_goods
 
@@ -9,10 +9,10 @@ class Bill < TaxProduct
     @list_goods = list_goods
   end
 
-  # total price has taxes
-  # price_product_has_taxes = price product * quanity + duty_tax + import_tax
-  # return number
-
+  # Total price has taxes
+  # Price_product_has_taxes = price product * quanity + duty_tax + import_tax
+  #
+  # @return number
   def total_has_taxes
     sum = 0
     @list_goods.each do |goods|
@@ -29,10 +29,10 @@ class Bill < TaxProduct
     sum.round(2)
   end
 
-  # total price has taxes
-  # price_product_has_taxes = price product * quanity
-  # return number
-
+  # Total price has taxes
+  # Price_product_has_taxes = price product * quanity
+  #
+  # @return number
   def total_has_not_taxes
     sum = 0
     @list_goods.each do |goods|
@@ -44,10 +44,10 @@ class Bill < TaxProduct
     sum.round(2)
   end
 
-  # sales taxes
-  # sales_taxes = total_has_taxes - total_has_not_taxes
-  # return number
-
+  # Sales taxes
+  # Sales_taxes = total_has_taxes - total_has_not_taxes
+  #
+  # @return number
   def sales_taxes
     sales_taxes = (total_has_taxes - total_has_not_taxes).round(2)
     puts "Sales Taxes: #{sales_taxes}"

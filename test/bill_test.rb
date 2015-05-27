@@ -9,9 +9,21 @@ describe Bill do
 
   let (:list_goods) {
     [
-      { quantity: "1", product: "story book", price: "12.49" },
-      { quantity: "1", product: "chocolate bar", price: "0.85" },
-      { quantity: "1", product: "music cd", price: "14.99" }
+      { 
+        quantity: "1",
+        product: "story book",
+        price: "12.49"
+      },
+      {
+        quantity: "1",
+        product: "chocolate bar",
+        price: "0.85"
+      },
+      {
+        quantity: "1",
+        product: "music cd",
+        price: "14.99"
+      }
     ]
   }
 
@@ -26,4 +38,4 @@ describe Bill do
       expect(@list_goods.total_has_taxes).to eq(29.83)
     end
   end
-end 
+end

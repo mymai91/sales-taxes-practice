@@ -4,7 +4,13 @@ describe 'Taxes' do
   describe 'Sales taxes products' do
     describe 'Duty products' do
 
-      let (:goods) { { quantity: "1", product: "music cd", price: "14.99" } } 
+      let (:goods) { 
+        {
+          quantity: "1",
+          product: "music cd",
+          price: "14.99"
+        }
+      } 
 
       it 'has 10% sales tax' do
         basic_goods = TaxProduct.new(goods)
@@ -14,10 +20,37 @@ describe 'Taxes' do
 
     describe 'Exempt products' do
 
-      let (:music_cd)  { { quantity: "1", product: "music cd", price: "14.99" } }
-      let (:book)      { { quantity: "1", product: 'story book', price: '12.49' } }
-      let (:chocolate) { { quantity: "1", product: 'chocolate bar', price: '0.85' } }
-      let (:pill)      { { quantity: "1", product: 'pill', price: '9.75' } }
+      let (:music_cd) { 
+        {
+          quantity: "1",
+          product: "music cd",
+          price: "14.99"
+        }
+      }
+
+      let (:book) {
+        {
+          quantity: "1",
+          product: 'story book',
+          price: '12.49'
+        }
+      }
+
+      let (:chocolate) {
+        {
+          quantity: "1",
+          product: 'chocolate bar',
+          price: '0.85'
+        }
+      }
+
+      let (:pill) { 
+        {
+          quantity: "1",
+          product: 'pill',
+          price: '9.75'
+        }
+      }
 
       it 'has not sales tax' do
         book_product      = TaxProduct.new(book)
