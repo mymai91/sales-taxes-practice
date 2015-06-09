@@ -1,4 +1,4 @@
-require_relative 'bill'
+require_relative 'bills'
 
 input1 = [
   {
@@ -6,9 +6,9 @@ input1 = [
     product: "story book",
     price: "12.49"
   },
-  { 
-    quantity: "1", 
-    product: "music cd", 
+  {
+    quantity: "1",
+    product: "music cd",
     price: "14.99"
   },
   {
@@ -54,15 +54,24 @@ input3 = [
   }
 ]
 
-input1 = Bill.new(input1)
-input1.sales_taxes
+bills1 = Bills.new(input1)
+
+bills1.print_bill
+puts "Sales Taxes: #{ bills1.total_sales_taxes } "
+puts "Total: #{ bills1.total_price } "
 
 puts "=============================================="
 
-input2 = Bill.new(input2)
-input2.sales_taxes
+bills2 = Bills.new(input2)
+
+bills2.print_bill
+puts "Sales Taxes: #{ bills2.total_sales_taxes } "
+puts "Total: #{ bills2.total_price } "
 
 puts "=============================================="
 
-input3 = Bill.new(input3)
-input3.sales_taxes
+bills3 = Bills.new(input3)
+
+bills3.print_bill
+puts "Sales Taxes: #{ bills3.total_sales_taxes } "
+puts "Total: #{ bills3.total_price } "

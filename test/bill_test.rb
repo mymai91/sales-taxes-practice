@@ -1,15 +1,12 @@
-require_relative '../product'
-require_relative '../tax_product'
-require_relative '../bill'
-
-describe Bill do
+require_relative '../bills'
+describe Bills do
   before do
-    @list_goods = Bill.new(list_goods)
+    @bill = Bills.new(items)
   end
 
-  let (:list_goods) {
+  let (:items) {
     [
-      { 
+      {
         quantity: "1",
         product: "story book",
         price: "12.49"
@@ -28,14 +25,14 @@ describe Bill do
   }
 
   describe 'sales taxes' do
-    it 'import product and duty product' do
-      expect(@list_goods.sales_taxes).to eq(1.5)
+    it 'amount' do
+      expect(@bill.total_sales_taxes).to eq(1.5)
     end
   end
 
   describe 'total' do
-    it 'product has taxes' do
-      expect(@list_goods.total_has_taxes).to eq(29.83)
+    it 'amount_with_sales_taxes' do
+      expect(@bill.total_price).to eq(29.83)
     end
   end
 end

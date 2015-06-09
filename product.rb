@@ -1,46 +1,46 @@
-class Product
-  attr_reader :goods
+# Info's product
+#
+# Including info about:
+# sale_tax consist import tax and good tax
+# price
+# price_with_sale_tax
 
-  def initialize(goods)
-    @goods = goods
+class Product
+
+  IMPORTED_PRODUCT = %w(imported)
+
+  def self.imported?(item)
+    product = item[:product].split(" ")
+    combine_product = (IMPORTED_PRODUCT + product)
+    filter_product = combine_product.uniq
+    combine_product.length != filter_product.length
   end
 
-  # Check product
-  # If miss one of them will return false
-  # 
-  # @return boolean value
-  def product?
-    _check_quantity? && _check_product? && _check_price?
+  def sale_tax(item)
+    (_good_tax(item) + _imported_tax(item)).to_f.round(2)
+  end
+
+  def price(item)
+    item[:price].to_f.round(2)
+  end
+
+  def price_with_sale_tax(item)
+    (price(item) + sale_tax(item)).round(2)
   end
 
   private
 
-  # Check miss value
-  #
-  # @return boolean value
-  def _check_value(key, name)
-    !!(@goods[key].public_send(name) > 0)
+  def _amount_tax(item, percent)
+    price(item) * percent
   end
 
-  # Check miss quantity
-  #
-  # @return boolean value
-  def _check_quantity?
-    _check_value(:quantity, :to_i)
+  # If item belong duty product will get 10% on a good
+  def _good_tax(item)
+    !Category.extemp_product?(item) ? _amount_tax(item, 0.1) : 0
   end
 
-  # Check miss product
-  #
-  # @return boolean value
-  def _check_product?
-    _check_value(:product, :length)
+  # If item belong imported product will get 5% on a good
+  def _imported_tax(item)
+    Product.imported?(item) ? _amount_tax(item, 0.05) : 0
   end
-
-  # Check miss price
-  #
-  # @return boolean value
-  def _check_price?
-    _check_value(:price, :to_f)
-  end
-
 end
